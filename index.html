@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>PR Urban Social</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+:root{--bg:#141414;--card:#1e1e1e;--card2:#262626;--txt:#eee;--mut:#999;--acc:#ff4fa3;--line:#333;--ok:#7bd88f;--bad:#ff7b7b;--fb:#4a90e2;--ig:#e1306c;--tt:#69c9d0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:14px}
+header{display:flex;align-items:center;gap:10px;padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top,0px));background:#181818;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+header h1{font-size:17px;color:var(--acc);white-space:nowrap}
+header .spacer{flex:1}
+nav{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.tab-btn{background:#2a2a2a;color:#ccc;border:none;border-radius:16px;padding:6px 12px;font-size:12px;cursor:pointer}
+.tab-btn.active{background:var(--acc);color:#1a1a1a;font-weight:600}
+main{max-width:860px;margin:0 auto;padding:14px 14px 80px}
+.pane{display:none}.pane.active{display:block}
+.form-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.form-panel h3{font-size:14px;margin-bottom:10px;color:#ffa4cf}
+label{display:block;font-size:11px;color:var(--mut);margin:8px 0 3px;text-transform:uppercase;letter-spacing:.5px}
+input,select,textarea{width:100%;background:#181818;border:1px solid var(--line);border-radius:8px;color:var(--txt);padding:8px 11px;font-size:14px;font-family:inherit}
+textarea{min-height:70px;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc)}
+.btn{background:#2a2a2a;color:#ddd;border:none;border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer}
+.btn.pink{background:var(--acc);color:#141414;font-weight:600}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+/* platform chips */
+.pf-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
+.pf-chip{border:1px solid var(--line);background:#222;color:#bbb;border-radius:14px;padding:5px 12px;font-size:12px;cursor:pointer}
+.pf-chip.on-fb{background:var(--fb);color:#101;border-color:var(--fb)}
+.pf-chip.on-ig{background:var(--ig);color:#fff;border-color:var(--ig)}
+.pf-chip.on-tt{background:var(--tt);color:#103;border-color:var(--tt)}
+.pf-tag{font-size:10px;font-weight:700;padding:1px 8px;border-radius:8px;margin-left:5px}
+.pf-fb{background:var(--fb);color:#101}.pf-ig{background:var(--ig);color:#fff}.pf-tt{background:var(--tt);color:#103}
+/* plan cards */
+.wk-head{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin:16px 0 8px}
+.plan-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+.plan-card .top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.plan-card .date{font-size:12px;color:var(--mut);min-width:74px}
+.plan-card .cap{margin-top:5px;font-size:13px;line-height:1.5;white-space:pre-wrap}
+.status{font-size:10px;padding:2px 9px;border-radius:9px;cursor:pointer;border:none;font-weight:700}
+.st-idea{background:#3a3a3a;color:#bbb}.st-drafted{background:#4a4022;color:#ffcc66}.st-scheduled{background:#22384a;color:#7ab8ff}.st-posted{background:#233c2a;color:#7bd88f}
+.mini{background:none;border:none;color:#888;cursor:pointer;font-size:14px;padding:2px 6px}
+.mini:hover{color:#fff}
+.armed{color:#ff7b7b !important;font-weight:700}
+/* posts table */
+.post-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+.post-card .top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.post-card .cap{margin-top:4px;font-size:13px;color:#ccc}
+.metrics{display:flex;gap:12px;margin-top:7px;flex-wrap:wrap}
+.metric{font-size:12px;color:var(--mut)}
+.metric input{width:64px;padding:3px 6px;font-size:12px;text-align:center}
+.metric b{color:#ddd}
+/* numbers */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 8px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:11px;text-transform:uppercase;color:var(--mut);letter-spacing:.5px}
+td input{width:80px;padding:4px 6px;font-size:13px;text-align:center}
+.delta{font-size:11px;margin-left:5px}
+.up{color:var(--ok)}.down{color:var(--bad)}
+.plat-cell{font-weight:700}
+#sync-url{font-size:12px;margin:8px 0}
+#setup-banner{background:#241a20;border:1px solid var(--acc);border-radius:12px;padding:14px 16px;margin-bottom:14px;line-height:1.6}
+#sync-status{font-size:12px;color:var(--mut);margin-top:8px}
+.hint{font-size:11px;color:var(--mut);margin-top:6px;line-height:1.5}
+.empty{color:#888;padding:18px 6px;line-height:1.6;font-size:13px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;background:#2c2c2c;border:1px solid var(--acc);color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:30}
+.toast.show{opacity:1}
+#search-posts{margin-bottom:10px}
+@media (max-width:520px){.row3{grid-template-columns:1fr}.row2{grid-template-columns:1fr}header h1{font-size:15px}.tab-btn{padding:6px 9px;font-size:11px}td input{width:64px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>PR Urban Social</h1>
+  <div class="spacer"></div>
+  <nav>
+    <button class="tab-btn active" data-tab="planner">Planner</button>
+    <button class="tab-btn" data-tab="posts">Posts</button>
+    <button class="tab-btn" data-tab="numbers">Numbers</button>
+    <button class="tab-btn" data-tab="sync">Sync</button>
+  </nav>
+</header>
+<main>
+  <!-- PLANNER -->
+  <div class="pane active" id="tab-planner">
+    <div class="form-panel">
+      <h3>Plan a post</h3>
+      <div class="row2">
+        <div><label>Date</label><input type="date" id="pl-date"></div>
+        <div><label>Type</label><select id="pl-type">
+          <option>Reel / Video</option><option>Photo post</option><option>Story</option><option>Carousel</option><option>Live</option><option>Other</option>
+        </select></div>
+      </div>
+      <label>Platforms</label>
+      <div class="pf-chips" id="pl-platforms">
+        <button class="pf-chip" data-pf="fb">Facebook</button>
+        <button class="pf-chip" data-pf="ig">Instagram</button>
+        <button class="pf-chip" data-pf="tt">TikTok</button>
+      </div>
+      <label>Idea / caption draft</label>
+      <textarea id="pl-cap" placeholder="What's the post? Hook, caption, hashtags…"></textarea>
+      <button class="btn pink" id="pl-add" style="margin-top:10px">Add to plan</button>
+    </div>
+    <div id="plan-list"></div>
+  </div>
+
+  <!-- POSTS -->
+  <div class="pane" id="tab-posts">
+    <input type="text" id="search-posts" placeholder="Search posted content…">
+    <div class="pf-chips" id="posts-filter">
+      <button class="pf-chip on-all" data-pf="all" style="background:#555;color:#fff">All</button>
+      <button class="pf-chip" data-pf="fb">Facebook</button>
+      <button class="pf-chip" data-pf="ig">Instagram</button>
+      <button class="pf-chip" data-pf="tt">TikTok</button>
+    </div>
+    <div id="post-list"></div>
+  </div>
+
+  <!-- NUMBERS -->
+  <div class="pane" id="tab-numbers">
+    <div class="form-panel">
+      <h3>This week's check-in</h3>
+      <p class="hint" style="margin-bottom:8px">Once a week (Sunday works well), open each app's profile, and type in your <b>followers</b> and the week's <b>total views/reach</b>. Two minutes, and you'll see exactly what's growing.</p>
+      <div id="week-form"></div>
+      <button class="btn pink" id="wk-save" style="margin-top:10px">Save this week</button>
+    </div>
+    <div id="numbers-history"></div>
+  </div>
+
+  <!-- SYNC -->
+  <div class="pane" id="tab-sync">
+    <div id="setup-banner" style="display:none">
+      <b>Welcome!</b> Paste your <b>Social sync code</b> below and press Connect. Everything then saves to your private cloud and appears on every device using the same code.
+    </div>
+    <div class="form-panel">
+      <h3>Sync code</h3>
+      <input type="text" id="sync-url" placeholder="Paste your sync code here">
+      <button class="btn pink" id="save-sync-btn">Connect</button>
+      <div id="sync-status"></div>
+      <p class="hint">Treat this code like a password. OK to share with staff who run the socials.</p>
+    </div>
+    <div class="form-panel">
+      <h3>Backup</h3>
+      <button class="btn" id="backup-btn">Download Backup</button>
+    </div>
+    <div class="form-panel">
+      <h3>How this app works</h3>
+      <p class="hint"><b>Planner</b> — bank every content idea, tap the status chip to walk it from Idea → Drafted → Scheduled → Posted. Marking it Posted moves it into the Posts database automatically (one entry per platform).<br><br>
+      <b>Posts</b> — your permanent archive of everything published. A few days after posting, come back and type in the likes/comments/views so you learn what works. Search it before making new content — your best old posts are your best future posts.<br><br>
+      <b>Numbers</b> — a once-a-week, two-minute check-in of followers and views per platform, with growth shown automatically.<br><br>
+      <b>Why manual?</b> Facebook, Instagram and especially TikTok don't allow outside apps to reliably pull your organic content — every "connected" tool breaks when they change the rules. Two minutes a week of typing keeps this app working forever, and the weekly ritual itself keeps you across your numbers. The posting playbook lives in the PR Urban Brain app.</p>
+    </div>
+  </div>
+</main>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
