@@ -72,6 +72,11 @@ td input{width:80px;padding:4px 6px;font-size:13px;text-align:center}
 .empty{color:#888;padding:18px 6px;line-height:1.6;font-size:13px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;background:#2c2c2c;border:1px solid var(--acc);color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:30}
 .toast.show{opacity:1}
+.help-wrap details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+.help-wrap summary{cursor:pointer;font-weight:600;color:#ffa4cf;font-size:14px}
+.help-wrap .hb{margin-top:10px;line-height:1.75;font-size:13px;color:#ccc}
+.help-wrap .hb b{color:#fff}
+.help-intro{background:#241a20;border:1px solid var(--acc);border-radius:12px;padding:14px 16px;margin-bottom:14px;line-height:1.7;font-size:13px}
 #search-posts{margin-bottom:10px}
 @media (max-width:520px){.row3{grid-template-columns:1fr}.row2{grid-template-columns:1fr}header h1{font-size:15px}.tab-btn{padding:6px 9px;font-size:11px}td input{width:64px}}
 </style>
@@ -85,6 +90,7 @@ td input{width:80px;padding:4px 6px;font-size:13px;text-align:center}
     <button class="tab-btn" data-tab="posts">Posts</button>
     <button class="tab-btn" data-tab="numbers">Numbers</button>
     <button class="tab-btn" data-tab="sync">Sync</button>
+    <button class="tab-btn" data-tab="help">Help</button>
   </nav>
 </header>
 <main>
@@ -156,6 +162,50 @@ td input{width:80px;padding:4px 6px;font-size:13px;text-align:center}
       <b>Posts</b> — your permanent archive of everything published. A few days after posting, come back and type in the likes/comments/views so you learn what works. Search it before making new content — your best old posts are your best future posts.<br><br>
       <b>Numbers</b> — a once-a-week, two-minute check-in of followers and views per platform, with growth shown automatically.<br><br>
       <b>Why manual?</b> Facebook, Instagram and especially TikTok don't allow outside apps to reliably pull your organic content — every "connected" tool breaks when they change the rules. Two minutes a week of typing keeps this app working forever, and the weekly ritual itself keeps you across your numbers. The posting playbook lives in the PR Urban Brain app.</p>
+    </div>
+  </div>
+
+  <!-- HELP -->
+  <div class="pane" id="tab-help">
+    <div class="help-wrap">
+      <div class="help-intro"><b>How this app works, in one breath:</b> ideas go into the <b>Planner</b>, get posted to Facebook/Instagram/TikTok by a human, get marked <b>Posted</b> (which files them into the <b>Posts</b> archive), and once a week you log your <b>Numbers</b>. Over time the app becomes your memory of what works — and the proof your following is growing.</div>
+
+      <details open>
+        <summary>Planner — banking and scheduling content</summary>
+        <div class="hb"><b>What:</b> every content idea lives here with a date, a type (Reel, Photo, Story, Carousel, Live) and platform tags — <b>Facebook</b> blue, <b>Instagram</b> pink, <b>TikTok</b> teal. Ideas are grouped by week so you can see the fortnight ahead at a glance.<br><br>
+        <b>How:</b> fill in the "Plan a post" box — tap the platform chips to toggle them (one post can target all three) — and <b>Add to plan</b>. The ✎ edits the caption, ✕ tapped <b>twice</b> deletes.<br><br>
+        <b>The status chip</b> is the workflow. Tap it to cycle: <b>Idea</b> (just a thought) → <b>Drafted</b> (filmed/written) → <b>Scheduled</b> (queued in the platform) → <b>Posted</b> (it's live). The moment you hit Posted, the app automatically files one entry per platform into the Posts archive — no double typing.<br><br>
+        <b>When:</b> batch it — one planning session a week (the weekly routine in the PR Urban Brain's Marketing section pairs with this perfectly).<br><br>
+        <b>Why:</b> consistency beats brilliance. A visible plan is the difference between "we post most weeks" and actually posting every week.</div>
+      </details>
+
+      <details>
+        <summary>Posts — your archive &amp; results database</summary>
+        <div class="hb"><b>What:</b> every published post, forever — searchable, filterable by platform.<br><br>
+        <b>How:</b> posts arrive here automatically when marked Posted in the Planner. <b>2–3 days after posting</b>, open each platform's insights and type the <b>likes, comments and views/reach</b> into the boxes — they save the moment you tap away. ✕ twice removes an entry.<br><br>
+        <b>When:</b> filling numbers takes a minute; do it with your weekly check-in.<br><br>
+        <b>Why:</b> this is the "database" part — after a term you can search "trial" or "concert" and instantly see which posts actually pulled views and enrolments. Your best old posts are the recipe for your best future posts.</div>
+      </details>
+
+      <details>
+        <summary>Numbers — the weekly growth check-in</summary>
+        <div class="hb"><b>What:</b> one row per week per platform: total <b>followers</b> and the week's <b>views/reach</b>.<br><br>
+        <b>How:</b> once a week (Sunday works), open FB/IG/TikTok, read the two numbers from each profile/insights page, type them in, <b>Save this week</b>. Saving again the same week just updates it. From week two onward the app shows growth automatically — green +up, red −down.<br><br>
+        <b>Why:</b> platforms show you today's numbers; they're terrible at showing the trend. Six months of weekly rows tells you exactly which platform is worth your energy — and watching the green +numbers is genuinely motivating.</div>
+      </details>
+
+      <details>
+        <summary>Why isn't this connected to the platforms automatically?</summary>
+        <div class="hb">Because it <b>can't be, reliably</b> — and honesty beats a broken promise. TikTok doesn't allow outside tools to touch organic content at all, and Facebook/Instagram connections break whenever Meta changes its rules (usually at the worst moment). Tools that claim otherwise are ad-analytics products or paid schedulers with the same fragility.<br><br>
+        This app trades ~2 minutes a week of typing for something that <b>works forever, costs nothing and can't be taken away</b>. For scheduling FB+IG posts in advance, Meta Business Suite (free, from Meta itself) is the safe official tool — plan here, schedule there, mark Posted here.</div>
+      </details>
+
+      <details>
+        <summary>Sync, sharing &amp; backups</summary>
+        <div class="hb"><b>Sharing:</b> fine to share the Social sync code with whoever helps run the socials — same one-time paste as the other apps. Keep the household finance/calendar codes out of it.<br><br>
+        <b>Backup:</b> Sync tab → Download Backup, monthly. <b>Restore</b> or moving to a fresh code: ask Claude — minutes.<br><br>
+        <b>Phones:</b> open the link, add to home screen, paste the code once. Changes sync instantly between everyone connected.</div>
+      </details>
     </div>
   </div>
 </main>
